@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}Active Users - Admin Dashboard{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Active Users</h1>
+
+    <!-- Users Table -->
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Example rows -->
+            <tr>
+                <td>1</td>
+                <td>John Doe</td>
+                <td>john.doe@example.com</td>
+                <td>Student</td>
+                <td><span class="badge bg-success">Active</span></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Jane Smith</td>
+                <td>jane.smith@example.com</td>
+                <td>Teacher</td>
+                <td><span class="badge bg-success">Active</span></td>
+            </tr>
+            <!-- Add more rows dynamically -->
+        </tbody>
+    </table>
+
+    <!-- Add New User Button -->
+    <div class="text-end mt-3">
+        <!-- Button to trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
+            Add New User
+        </button>
+    </div>
+
+    <!-- Add User Modal -->
+    <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addUserModalLabel">Add New User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Add User Form -->
+                    <form id="addUserForm" method="POST" action="/add_user">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="role" class="form-label">Role</label>
+                            <select id="role" name="role" class="form-select" required>
+                                <option value="" disabled selected>Select Role</option>
+                                <option value="Student">Student</option>
+                                <option value="Teacher">Teacher</option>
+                                <option value="Admin">Admin</option>
+                            </select>
+                        </div>
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-success w-100">Add User</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    h1 {
+        font-size: 2.5rem;
+        color: #2c3e50;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    .badge {
+        font-size: 0.9rem;
+        padding: 0.5em 0.75em;
+    }
+
+    .btn-primary {
+        border-radius: 20px;
+    }
+
+    .modal-content {
+        border-radius: 10px;
+    }
+</style>
+
+{% endblock %}

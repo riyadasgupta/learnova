@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard - LearnNova{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Admin Dashboard</h1>
+    <div class="row">
+        <!-- Card: Active Users -->
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Number of Active Users</h5>
+                    <p class="card-text">View and manage all active users in the system.</p>
+                    <a href="/active_users" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: Upcoming Exams -->
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Upcoming Exams</h5>
+                    <p class="card-text">View and schedule upcoming exams for students.</p>
+                    <a href="/upcoming_exams" class="btn btn-success">View Details</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: Manage Users -->
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Manage Users</h5>
+                    <p class="card-text">Add, edit, or remove users from the system.</p>
+                    <a href="/manage_users" class="btn btn-info">Manage Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 8px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn {
+        border-radius: 20px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        color: #2c3e50;
+    }
+    
+</style>
+{% endblock %}

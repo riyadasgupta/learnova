@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Assign Students for Exams</h1>
+
+    <!-- Select Exam -->
+    <form method="POST" action="/assign_students_to_exam">
+        <div class="mb-3">
+            <label for="exam_id" class="form-label">Select Exam</label>
+            <select id="exam_id" name="exam_id" class="form-select">
+                <!-- Example options -->
+                <option value="" disabled selected>Select an exam</option>
+                <option value="1">Midterm Exam - Mathematics</option>
+                <option value="2">Final Exam - Science</option>
+            </select>
+        </div>
+
+        <!-- Assign Students -->
+        <div class="mb-3">
+            <label for="students_list" class="form-label">Select Students</label>
+            <!-- Example checkboxes -->
+            <div class="form-check">
+                <input type="checkbox" id="student_1" name="students[]" value="1" class="form-check-input">
+                <label for="student_1" class="form-check-label">John Doe</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="student_2" name="students[]" value="2" class="form-check-input">
+                <label for="student_2" class="form-check-label">Jane Smith</label>
+            </div>
+            <!-- Add more students dynamically -->
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary w-100">Assign Students</button>
+    </form>
+</div>
+{% endblock %}

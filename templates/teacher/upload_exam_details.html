@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Upload Exam Details</h1>
+    <form method="POST" action="/submit_exam_details" class="mt-4">
+        <div class="mb-3">
+            <label for="exam_name" class="form-label">Exam Name</label>
+            <input type="text" id="exam_name" name="exam_name" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="subject" class="form-label">Subject</label>
+            <input type="text" id="subject" name="subject" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" id="date" name="date" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="time" class="form-label">Time</label>
+            <input type="time" id="time" name="time" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Submit Exam Details</button>
+    </form>
+</div>
+{% endblock %}

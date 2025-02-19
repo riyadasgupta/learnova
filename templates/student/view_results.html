@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Results and Weak Point Analysis</h1>
+
+    <!-- Results Table -->
+    <table class="table table-striped mt-4">
+        <thead>
+            <tr>
+                <th>Exam Name</th>
+                <th>Score</th>
+                <th>Weak Points</th>
+                <th>Recommended Videos/Materials</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Example rows -->
+            <tr>
+                <td>Midterm Exam - Mathematics</td>
+                <td>75%</td>
+                <td>Algebra, Geometry</td>
+                <td><a href="#">Watch Videos</a></td>
+            </tr>
+            <tr>
+                <td>Final Exam - Science</td>
+                <td>85%</td>
+                <td>Chemical Reactions</td>
+                <td><a href="#">Study Materials</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Follow-Up Assignment -->
+    <div class="mt-4">
+        <h3>Follow-Up Assignment</h3>
+        <p><a href="#">Download Assignment for Practice</a></p>
+    </div>
+
+    <!-- Chatbot Section -->
+    <div class="mt-4">
+        <h3>Need Help?</h3>
+        <p>Use our chatbot for personalized guidance.</p>
+        <a href="/chatbot" class="btn btn-primary">Open Chatbot</a>
+    </div>
+
+</div>
+{% endblock %}

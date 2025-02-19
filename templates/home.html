@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Top Bar -->
+<div class="top-bar bg-dark text-white py-2">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div>
+            <i class="bi bi-envelope"></i> support@learnova.com
+        </div>
+    
+    </div>
+</div>
+
+<!-- Hero Section -->
+<header class="hero-section text-center text-white d-flex align-items-center justify-content-center"
+        style="background-image: url('{{ url_for('static', filename='images/hero-bg.jpg') }}'); height: 100vh; background-size: cover; background-position: center;">
+    <div class="container">
+        <h1 class="display-3 fw-bold text-uppercase">The Best Place to Learn and Grow</h1>
+        <p class="lead">Empowering students, teachers, and institutions with cutting-edge tools.</p>
+        <div class="mt-4">
+            <button class="btn btn-warning btn-lg mx-2">Get Started</button>
+            <button class="btn btn-outline-light btn-lg mx-2">Learn More</button>
+        </div>
+    </div>
+</header>
+
+<!-- About Section -->
+<section class="py-5 text-center">
+    <div class="container">
+        <h2 class="fw-bold display-4">About Learnova</h2>
+        <p>Learnova is your one-stop solution for online learning, assessments, and performance tracking. Designed for students, teachers, and administrators, Learnova makes education seamless and effective.</p>
+    </div>
+</section>
+{% endblock %}

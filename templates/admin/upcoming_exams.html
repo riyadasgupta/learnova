@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}Upcoming Exams - Admin Dashboard{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Upcoming Exams</h1>
+
+    <!-- Exams Table -->
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Exam Name</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Subject</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Example rows -->
+            {% for exam in exams %}
+            <tr>
+                <td>{{ exam.id }}</td>
+                <td>{{ exam.name }}</td>
+                <td>{{ exam.date }}</td>
+                <td>{{ exam.time }}</td>
+                <td>{{ exam.subject }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Add New Exam Button -->
+    <div class="text-end mt-3">
+        <!-- Button to trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addExamModal">
+            Add New Exam
+        </button>
+    </div>
+
+    <!-- Add Exam Modal -->
+    <div class="modal fade" id="addExamModal" tabindex="-1" aria-labelledby="addExamModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addExamModalLabel">Add New Exam</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Add Exam Form -->
+                    <form id="addExamForm" method="POST" action="/add_exam">
+                        <div class="mb-3">
+                            <label for="exam_name" class="form-label">Exam Name</label>
+                            <input type="text" class="form-control" id="exam_name" name="exam_name" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="date" class="form-label">Date</label>
+                            <input type="date" class="form-control" id="date" name="date" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="time" class="form-label">Time</label>
+                            <input type="time" class="form-control" id="time" name="time" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" class="form-control" id="subject" name="subject" required />
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-success w-100">Add Exam</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    h1 {
+        font-size: 2.5rem;
+        color: #2c3e50;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    .btn-primary {
+        border-radius: 20px;
+    }
+
+    .modal-content {
+        border-radius: 10px;
+    }
+</style>
+
+{% endblock %}

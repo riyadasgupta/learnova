@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Attend Exam</h1>
+
+    <!-- Select Exam -->
+    <form method="POST" action="/student/attend_exam">
+        <div class="mb-3">
+            <label for="exam_id" class="form-label">Select an Exam</label>
+            <select id="exam_id" name="exam_id" class="form-select" required>
+                <!-- Example options -->
+                <option value="" disabled selected>Select an exam</option>
+                <option value="1">Midterm Exam - Mathematics</option>
+                <option value="2">Final Exam - Science</option>
+            </select>
+        </div>
+
+        <!-- Start Exam Button -->
+        <button type="submit" class="btn btn-primary w-100">Start Exam</button>
+    </form>
+</div>
+{% endblock %}
