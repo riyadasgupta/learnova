@@ -1,4 +1,4 @@
-# Learnova: Next-Gen Adaptive Learning, AI-Driven Assessments & Performance Enhancement.
+# Learnova: Next-Gen AI, Adaptive Learning Platform
 
 ## Project Overview
 
