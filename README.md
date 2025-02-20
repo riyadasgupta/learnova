@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-LearnNova is an innovative online learning platform designed to bridge the gap between traditional education and modern technology. Our mission is to provide a comprehensive, user-friendly environment for students, teachers, and administrators to interact, learn, and grow together.
+Learnova is an innovative online learning platform designed to bridge the gap between traditional education and modern technology. Our mission is to provide a comprehensive, user-friendly environment for students, teachers, and administrators to interact, learn, and grow together.
 
 ## Key Features
 
@@ -55,4 +55,4 @@ LearnNova is an innovative online learning platform designed to bridge the gap b
 
 ## Impact and Vision
 
-LearnNova aims to democratize education by providing accessible, high-quality learning experiences to students worldwide. By leveraging cutting-edge technology, we aspire to create a global community of lifelong learners and contribute to the evolution of education in the digital age.
+Learnova aims to democratize education by providing accessible, high-quality learning experiences to students worldwide. By leveraging cutting-edge technology, we aspire to create a global community of lifelong learners and contribute to the evolution of education in the digital age.
