@@ -1,4 +1,4 @@
-# LearnNova: Revolutionizing Online Education
+# Learnova: Next-Gen Adaptive Learning, AI-Driven Assessments & Performance Enhancement.
 
 ## Project Overview
 
