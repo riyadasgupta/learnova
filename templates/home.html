@@ -1,12 +1,56 @@
 {% extends "base.html" %}
 {% block content %}
 
+<style>
+    .hero-section {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+    
+    .hero-section .container {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .text-shadow {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+    
+    .hero-section h1,
+    .hero-section p {
+        transition: text-shadow 0.3s ease;
+    }
+    
+    .hero-section:hover h1,
+    .hero-section:hover p {
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+    }
+</style>
+
 <!-- Hero Section -->
-<header class="hero-section text-center text-white d-flex align-items-center justify-content-center"
+<header class="hero-section text-center text-white d-flex align-items-center justify-content-center position-relative"
         style="background-image: url('{{ url_for('static', filename='images/hero-bg.jpg') }}'); height: 100vh; background-size: cover; background-position: center;">
-    <div class="container">
-        <h1 class="display-3 fw-bold text-uppercase animate__animated animate__fadeInDown">🚀 Elevate Learning with Learnova</h1>
-        <p class="lead animate__animated animate__fadeIn animate__delay-1s">Empowering students, teachers, and institutions with cutting-edge tools.</p>
+    <!-- Semi-transparent overlay -->
+    <div class="overlay position-absolute top-0 start-0 w-100 h-100 bg-dark" style="opacity: 0.6;"></div>
+    
+    <div class="container position-relative z-1">
+        <h1 class="display-3 fw-bold text-uppercase animate__animated animate__fadeInDown text-shadow">
+            🚀 Elevate Learning with Learnova
+        </h1>
+        <p class="lead animate__animated animate__fadeIn animate__delay-1s text-shadow">
+            Empowering students, teachers, and institutions with cutting-edge tools.
+        </p>
         <div class="mt-4">
             <a href="/signup" class="btn btn-warning btn-lg mx-2 fw-bold rounded-pill shadow-lg">Get Started</a>
             <a href="/about" class="btn btn-outline-light btn-lg mx-2 fw-bold rounded-pill shadow-lg">Learn More</a>
@@ -18,7 +62,7 @@
 <section class="py-5 text-center bg-dark text-white">
     <div class="container">
         <h2 class="fw-bold display-4 text-warning mb-4 animate__animated animate__zoomIn">Why Choose Learnova? 🌟</h2>
-        <p class="lead text-light opacity-75">Learnova provides an innovative learning environment with **engaging courses, real-time assessments, and collaboration tools** for a seamless educational experience.</p>
+        <p class="lead text-light opacity-75">Learnova provides an innovative learning environment with engaging courses, real-time assessments, and collaboration tools for a seamless educational experience.</p>
         
         <div class="row mt-5">
             <div class="col-md-4 mb-4">
