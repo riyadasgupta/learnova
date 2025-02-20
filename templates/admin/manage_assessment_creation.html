@@ -1,106 +1,109 @@
 {% extends "base.html" %}
 {% block title %}Manage Assessment Creation - Admin Dashboard{% endblock %}
 {% block content %}
+
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Manage Assessment Creation</h1>
+    <h1 class="text-center neon-text mb-4">📚 Manage Assessments</h1>
 
     <!-- Add New Assessment Button -->
     <div class="text-end mb-3">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAssessmentModal">
-            Add New Assessment
+        <button type="button" class="btn neon-button" data-bs-toggle="modal" data-bs-target="#addAssessmentModal">
+            ➕ Add New Assessment
         </button>
     </div>
 
     <!-- Existing Assessments Table -->
-    <table class="table table-striped table-hover">
-        <thead class="table-dark">
-            <tr>
-                <th>ID</th>
-                <th>Assessment Name</th>
-                <th>Subject</th>
-                <th>Duration</th>
-                <th>Total Questions</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for assessment in assessments %}
-            <tr>
-                <td>{{ assessment.id }}</td>
-                <td>{{ assessment.name }}</td>
-                <td>{{ assessment.subject }}</td>
-                <td>{{ assessment.duration }} minutes</td>
-                <td>{{ assessment.total_questions }}</td>
-                <td>
-                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editAssessmentModal{{ assessment.id }}">Edit</button>
-                    <button class="btn btn-sm btn-danger" onclick="deleteAssessment({{ assessment.id }})">Delete</button>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-dark table-hover custom-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Assessment Name</th>
+                    <th>Subject</th>
+                    <th>Duration</th>
+                    <th>Total Questions</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for assessment in assessments %}
+                <tr>
+                    <td>{{ assessment.id }}</td>
+                    <td>{{ assessment.name }}</td>
+                    <td>{{ assessment.subject }}</td>
+                    <td>{{ assessment.duration }} min</td>
+                    <td>{{ assessment.total_questions }}</td>
+                    <td>
+                        <button class="btn btn-sm neon-button-small" data-bs-toggle="modal" data-bs-target="#editAssessmentModal{{ assessment.id }}">✏ Edit</button>
+                        <button class="btn btn-sm glow-danger" onclick="deleteAssessment({{ assessment.id }})">🗑 Delete</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
     <!-- Add Assessment Modal -->
-    <div class="modal fade" id="addAssessmentModal" tabindex="-1" aria-labelledby="addAssessmentModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addAssessmentModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content glass-card">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addAssessmentModalLabel">Add New Assessment</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title neon-text">➕ Add Assessment</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <form id="addAssessmentForm" method="POST" action="/add_assessment">
                         <div class="mb-3">
-                            <label for="assessmentName" class="form-label">Assessment Name</label>
-                            <input type="text" class="form-control" id="assessmentName" name="name" required>
+                            <label class="form-label">Assessment Name</label>
+                            <input type="text" class="form-control glass-input" name="name" required>
                         </div>
                         <div class="mb-3">
-                            <label for="subject" class="form-label">Subject</label>
-                            <input type="text" class="form-control" id="subject" name="subject" required>
+                            <label class="form-label">Subject</label>
+                            <input type="text" class="form-control glass-input" name="subject" required>
                         </div>
                         <div class="mb-3">
-                            <label for="duration" class="form-label">Duration (minutes)</label>
-                            <input type="number" class="form-control" id="duration" name="duration" required>
+                            <label class="form-label">Duration (min)</label>
+                            <input type="number" class="form-control glass-input" name="duration" required>
                         </div>
                         <div class="mb-3">
-                            <label for="totalQuestions" class="form-label">Total Questions</label>
-                            <input type="number" class="form-control" id="totalQuestions" name="total_questions" required>
+                            <label class="form-label">Total Questions</label>
+                            <input type="number" class="form-control glass-input" name="total_questions" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Create Assessment</button>
+                        <button type="submit" class="btn neon-button">Create</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Edit Assessment Modal (Create one for each assessment) -->
+    <!-- Edit Assessment Modals -->
     {% for assessment in assessments %}
-    <div class="modal fade" id="editAssessmentModal{{ assessment.id }}" tabindex="-1" aria-labelledby="editAssessmentModalLabel{{ assessment.id }}" aria-hidden="true">
+    <div class="modal fade" id="editAssessmentModal{{ assessment.id }}" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content glass-card">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editAssessmentModalLabel{{ assessment.id }}">Edit Assessment</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title neon-text">✏ Edit Assessment</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editAssessmentForm{{ assessment.id }}" method="POST" action="/edit_assessment/{{ assessment.id }}">
+                    <form method="POST" action="/edit_assessment/{{ assessment.id }}">
                         <div class="mb-3">
-                            <label for="editAssessmentName{{ assessment.id }}" class="form-label">Assessment Name</label>
-                            <input type="text" class="form-control" id="editAssessmentName{{ assessment.id }}" name="name" value="{{ assessment.name }}" required>
+                            <label class="form-label">Assessment Name</label>
+                            <input type="text" class="form-control glass-input" name="name" value="{{ assessment.name }}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="editSubject{{ assessment.id }}" class="form-label">Subject</label>
-                            <input type="text" class="form-control" id="editSubject{{ assessment.id }}" name="subject" value="{{ assessment.subject }}" required>
+                            <label class="form-label">Subject</label>
+                            <input type="text" class="form-control glass-input" name="subject" value="{{ assessment.subject }}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="editDuration{{ assessment.id }}" class="form-label">Duration (minutes)</label>
-                            <input type="number" class="form-control" id="editDuration{{ assessment.id }}" name="duration" value="{{ assessment.duration }}" required>
+                            <label class="form-label">Duration (min)</label>
+                            <input type="number" class="form-control glass-input" name="duration" value="{{ assessment.duration }}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="editTotalQuestions{{ assessment.id }}" class="form-label">Total Questions</label>
-                            <input type="number" class="form-control" id="editTotalQuestions{{ assessment.id }}" name="total_questions" value="{{ assessment.total_questions }}" required>
+                            <label class="form-label">Total Questions</label>
+                            <input type="number" class="form-control glass-input" name="total_questions" value="{{ assessment.total_questions }}" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Update Assessment</button>
+                        <button type="submit" class="btn neon-button">Update</button>
                     </form>
                 </div>
             </div>
@@ -110,47 +113,24 @@
 </div>
 
 <style>
-    .table {
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .table-hover tbody tr:hover {
-        background-color: #f5f5f5;
-    }
-    .btn-primary {
-        background-color: #007bff;
-        border-color: #007bff;
-    }
-    .btn-primary:hover {
-        background-color: #0056b3;
-        border-color: #0056b3;
-    }
-    .btn-danger {
-        background-color: #dc3545;
-        border-color: #dc3545;
-    }
-    .btn-danger:hover {
-        background-color: #c82333;
-        border-color: #bd2130;
-    }
-    .modal-content {
-        border-radius: 0.3rem;
-    }
-    .form-control:focus {
-        border-color: #80bdff;
-        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-    }
+    .neon-text { text-shadow: 0px 0px 10px #00c3ff, 0px 0px 20px #00c3ff; }
+    .glass-card { backdrop-filter: blur(10px); border-radius: 15px; }
+    .glass-input { background: rgba(255, 255, 255, 0.1); color: white; border-radius: 8px; }
+    .glass-input:focus { border-color: #00c3ff; box-shadow: 0px 0px 10px #00c3ff; }
+    .custom-table thead { background: rgba(0, 195, 255, 0.2); }
+    .neon-button { background: linear-gradient(135deg, #ff758c, #ff7eb3); border-radius: 30px; }
+    .neon-button-small { background: #00c3ff; box-shadow: 0 0 8px rgba(0, 195, 255, 0.6); }
+    .glow-danger { background: #ff4b5c; box-shadow: 0 0 8px rgba(255, 75, 92, 0.6); }
 </style>
 
 <script>
     function deleteAssessment(id) {
         if (confirm('Are you sure you want to delete this assessment?')) {
-            // Send a request to delete the assessment
             fetch(`/delete_assessment/${id}`, { method: 'POST' })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        // Remove the row from the table
-                        document.querySelector(`tr[data-id="${id}"]`).remove();
+                        location.reload();
                     } else {
                         alert('Failed to delete assessment');
                     }
@@ -158,4 +138,5 @@
         }
     }
 </script>
+
 {% endblock %}

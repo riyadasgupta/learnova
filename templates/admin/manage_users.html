@@ -1,75 +1,218 @@
 {% extends "base.html" %}
 {% block title %}Manage Users - Admin Dashboard{% endblock %}
 {% block content %}
-<div class="container mt-5">
-    <h1 class="text-center mb-4">Manage Users</h1>
 
-    <!-- Add User Form -->
-    <form method="POST" action="#" class="mb-4">
-        <div class="row g-3">
-            <div class="col-md-4">
-                <input type="text" class="form-control" name="name" placeholder="Name" required />
-            </div>
-            <div class="col-md-4">
-                <input type="email" class="form-control" name="email" placeholder="Email" required />
-            </div>
-            <div class="col-md-4">
-                <select name="role" class="form-select" required>
-                    <option value="" disabled selected>Select Role</option>
-                    <option value="Student">Student</option>
-                    <option value="Teacher">Teacher</option>
-                    <option value="Admin">Admin</option>
-                </select>
-            </div>
+<div class="main-container">
+    <div class="container mt-5">
+        <h1 class="text-center neon-text">👥 Manage Users</h1>
+
+        <!-- Add User Form -->
+        <div class="card glass-card p-4 mt-3">
+            <form method="POST" action="#">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control glass-input" name="name" placeholder="Name" required />
+                    </div>
+                    <div class="col-md-4">
+                        <input type="email" class="form-control glass-input" name="email" placeholder="Email" required />
+                    </div>
+                    <div class="col-md-4">
+                        <select name="role" class="form-select glass-input" required>
+                            <option value="" disabled selected>Select Role</option>
+                            <option value="Student">Student</option>
+                            <option value="Teacher">Teacher</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-end mt-3">
+                    <button type="submit" class="btn neon-button">➕ Add User</button>
+                </div>
+            </form>
         </div>
 
-        <!-- Submit Button -->
-        <div class="text-end mt-3">
-            <button type="submit" class="btn btn-success">Add User</button>
+        <!-- Users Table -->
+        <div class="table-responsive mt-4">
+            <table class="table table-dark table-hover custom-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>john.doe@example.com</td>
+                        <td>Student</td>
+                        <td><span class="badge bg-success">Active</span></td>
+                        <td>
+                            <button class="btn btn-sm neon-button-small">✏ Edit</button>
+                            <button class="btn btn-sm btn-danger glow-danger">🗑 Delete</button>
+                        </td>
+                    </tr>
+                    <!-- More rows dynamically -->
+                </tbody>
+            </table>
         </div>
-    </form>
 
-    <!-- Existing Users Table -->
-    <table class="table table-striped table-hover mt-4">
-        <thead class="table-dark">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Example rows -->
-            <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>john.doe@example.com</td>
-                <td>Student</td>
-                <td><span class="badge bg-success">Active</span></td>
-                <!-- Actions -->
-                <td>
-                    <button class="btn btn-sm btn-primary">Edit</button>
-                    <button class="btn btn-sm btn-danger">Delete</button>
-                </td>
-            </tr>
+        <!-- Pagination -->
+        <nav class="mt-4">
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link glass-btn" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link glass-btn" href="#">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
 
-            <!-- Add more rows dynamically -->
-        </tbody>
-    </table>
-
-    <!-- Pagination -->
-    <nav aria-label="Page navigation example" class="mt-4">
-        <ul class="pagination justify-content-center">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <!-- Add dynamic page numbers here -->
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-    </nav>
+<!-- Footer -->
+<footer class="footer">
+    <p>© 2025 Learnova. All rights reserved.</p>
+</footer>
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@300;400;600&display=swap');
+
+    /* Full Page Flexbox */
+    html, body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        background: radial-gradient(circle at top left, #1a1a2e, #16213e);
+        color: white;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .main-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .neon-text {
+        font-family: 'Orbitron', sans-serif;
+        text-shadow: 0px 0px 10px #00c3ff, 0px 0px 20px #00c3ff;
+    }
+
+    .glass-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        box-shadow: 0px 0px 15px rgba(0, 195, 255, 0.2);
+    }
+
+    .glass-input {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .glass-input:focus {
+        background: rgba(255, 255, 255, 0.2);
+        outline: none;
+        border-color: #00c3ff;
+        box-shadow: 0px 0px 10px #00c3ff;
+    }
+
+    .table-dark {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .custom-table thead tr {
+        background: rgba(0, 195, 255, 0.2);
+        border-bottom: 2px solid #00c3ff;
+    }
+
+    .custom-table tbody tr:hover {
+        background-color: rgba(0, 195, 255, 0.1);
+        transition: 0.3s;
+    }
+
+    .neon-button {
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 12px;
+        border-radius: 30px;
+        border: none;
+        box-shadow: 0 0 15px rgba(255, 118, 182, 0.5);
+        transition: 0.3s ease;
+    }
+
+    .neon-button:hover {
+        background: linear-gradient(135deg, #ff7eb3, #ff758c);
+        box-shadow: 0 4px 15px rgba(255, 118, 182, 0.7);
+    }
+
+    .neon-button-small {
+        background: #00c3ff;
+        color: white;
+        font-size: 14px;
+        padding: 6px 12px;
+        border-radius: 8px;
+        border: none;
+        box-shadow: 0 0 8px rgba(0, 195, 255, 0.6);
+    }
+
+    .neon-button-small:hover {
+        background: #008bff;
+        box-shadow: 0 4px 10px rgba(0, 195, 255, 0.9);
+    }
+
+    .glow-danger {
+        background: #ff4b5c;
+        color: white;
+        font-size: 14px;
+        padding: 6px 12px;
+        border-radius: 8px;
+        border: none;
+        box-shadow: 0 0 8px rgba(255, 75, 92, 0.6);
+    }
+
+    .glow-danger:hover {
+        background: #d43f52;
+        box-shadow: 0 4px 10px rgba(255, 75, 92, 0.9);
+    }
+
+    .glass-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 8px 16px;
+        border-radius: 8px;
+        color: white;
+        transition: 0.3s;
+    }
+
+    .glass-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Sticky Footer */
+    .footer {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+        font-size: 14px;
+        width: 100%;
+    }
+</style>
+
 {% endblock %}
-
-

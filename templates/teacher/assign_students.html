@@ -1,37 +1,106 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mt-5">
-    <h1 class="text-center">Assign Students for Exams</h1>
+    <h1 class="text-center text-light fw-bold">📌 Assign Students for Exams</h1>
 
-    <!-- Select Exam -->
-    <form method="POST" action="/assign_students_to_exam">
-        <div class="mb-3">
-            <label for="exam_id" class="form-label">Select Exam</label>
-            <select id="exam_id" name="exam_id" class="form-select">
-                <!-- Example options -->
-                <option value="" disabled selected>Select an exam</option>
-                <option value="1">Midterm Exam - Mathematics</option>
-                <option value="2">Final Exam - Science</option>
-            </select>
-        </div>
-
-        <!-- Assign Students -->
-        <div class="mb-3">
-            <label for="students_list" class="form-label">Select Students</label>
-            <!-- Example checkboxes -->
-            <div class="form-check">
-                <input type="checkbox" id="student_1" name="students[]" value="1" class="form-check-input">
-                <label for="student_1" class="form-check-label">John Doe</label>
+    <div class="glassmorphism p-4 mt-4">
+        <!-- Select Exam -->
+        <form method="POST" action="/assign_students_to_exam">
+            <div class="mb-4">
+                <label for="exam_id" class="form-label text-light">📚 Select Exam</label>
+                <select id="exam_id" name="exam_id" class="form-select stylish-select">
+                    <option value="" disabled selected>Select an exam</option>
+                    <option value="1">Midterm Exam - Mathematics</option>
+                    <option value="2">Final Exam - Science</option>
+                </select>
             </div>
-            <div class="form-check">
-                <input type="checkbox" id="student_2" name="students[]" value="2" class="form-check-input">
-                <label for="student_2" class="form-check-label">Jane Smith</label>
-            </div>
-            <!-- Add more students dynamically -->
-        </div>
 
-        <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary w-100">Assign Students</button>
-    </form>
+            <!-- Assign Students -->
+            <div class="mb-4">
+                <label for="students_list" class="form-label text-light">👨‍🎓 Select Students</label>
+                <div class="students-list">
+                    <div class="form-check custom-checkbox">
+                        <input type="checkbox" id="student_1" name="students[]" value="1" class="form-check-input">
+                        <label for="student_1" class="form-check-label">John Doe</label>
+                    </div>
+                    <div class="form-check custom-checkbox">
+                        <input type="checkbox" id="student_2" name="students[]" value="2" class="form-check-input">
+                        <label for="student_2" class="form-check-label">Jane Smith</label>
+                    </div>
+                    <!-- Add more students dynamically -->
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-gradient w-100">✅ Assign Students</button>
+        </form>
+    </div>
 </div>
+
+<style>
+    /* Background gradient */
+    body {
+        background: linear-gradient(135deg, #1f1c2c, #928dab);
+    }
+
+    /* Glassmorphism effect */
+    .glassmorphism {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glassmorphism:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Custom select dropdown */
+    .stylish-select {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .stylish-select option {
+        background: #2c3e50;
+        color: white;
+    }
+
+    /* Custom checkboxes */
+    .custom-checkbox .form-check-input {
+        background-color: transparent;
+        border: 2px solid white;
+    }
+
+    .custom-checkbox .form-check-input:checked {
+        background-color: #ff9a9e;
+        border-color: #ff758c;
+    }
+
+    /* Custom gradient button */
+    .btn-gradient {
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        border: none;
+        padding: 12px 24px;
+        font-size: 1rem;
+        color: white;
+        font-weight: bold;
+        border-radius: 25px;
+        transition: 0.3s ease-in-out;
+    }
+
+    .btn-gradient:hover {
+        background: linear-gradient(135deg, #ff7eb3, #ff758c);
+        box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+    }
+
+    h1 {
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+</style>
+
 {% endblock %}

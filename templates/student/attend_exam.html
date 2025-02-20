@@ -1,22 +1,109 @@
 {% extends "base.html" %}
+
 {% block content %}
-<div class="container mt-5">
-    <h1 class="text-center">Attend Exam</h1>
+<div class="main-container">
+    <div class="container mt-5">
+        <h1 class="text-center neon-text">📚 Attend Exam</h1>
 
-    <!-- Select Exam -->
-    <form method="POST" action="/student/attend_exam">
-        <div class="mb-3">
-            <label for="exam_id" class="form-label">Select an Exam</label>
-            <select id="exam_id" name="exam_id" class="form-select" required>
-                <!-- Example options -->
-                <option value="" disabled selected>Select an exam</option>
-                <option value="1">Midterm Exam - Mathematics</option>
-                <option value="2">Final Exam - Science</option>
-            </select>
-        </div>
+        <!-- Exam Selection -->
+        <form method="POST" action="/student/attend_exam" class="exam-form">
+            <div class="mb-4">
+                <label for="exam_id" class="form-label text-light">Select an Exam</label>
+                <select id="exam_id" name="exam_id" class="form-select custom-select" required>
+                    <option value="" disabled selected>📖 Choose your exam</option>
+                    <option value="1">🧮 Midterm Exam - Mathematics</option>
+                    <option value="2">🔬 Final Exam - Science</option>
+                </select>
+            </div>
 
-        <!-- Start Exam Button -->
-        <button type="submit" class="btn btn-primary w-100">Start Exam</button>
-    </form>
+            <!-- Start Exam Button -->
+            <button type="submit" class="btn neon-button w-100">🚀 Start Exam</button>
+        </form>
+    </div>
 </div>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>© 2025 Learnova. All rights reserved.</p>
+</footer>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@300;400;600&display=swap');
+
+    /* Full Page Flexbox Setup */
+    html, body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        background: radial-gradient(circle at top left, #1a1a2e, #16213e);
+        color: white;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .main-container {
+        flex: 1; /* Pushes footer down */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .neon-text {
+        font-family: 'Orbitron', sans-serif;
+        text-shadow: 0px 0px 10px #00c3ff, 0px 0px 20px #00c3ff;
+    }
+
+    .custom-select {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .custom-select:focus {
+        background: rgba(255, 255, 255, 0.2);
+        outline: none;
+        border-color: #00c3ff;
+        box-shadow: 0px 0px 10px #00c3ff;
+    }
+
+    .exam-form {
+        background: rgba(255, 255, 255, 0.08);
+        padding: 20px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0px 0px 15px rgba(0, 195, 255, 0.2);
+    }
+
+    .neon-button {
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 12px;
+        border-radius: 30px;
+        border: none;
+        box-shadow: 0 0 15px rgba(255, 118, 182, 0.5);
+        transition: 0.3s ease;
+    }
+
+    .neon-button:hover {
+        background: linear-gradient(135deg, #ff7eb3, #ff758c);
+        box-shadow: 0 4px 15px rgba(255, 118, 182, 0.7);
+    }
+
+    /* Sticky Footer */
+    .footer {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+        font-size: 14px;
+        width: 100%;
+    }
+</style>
+
 {% endblock %}

@@ -1,47 +1,168 @@
 {% extends "base.html" %}
 {% block content %}
+
 <div class="container mt-5">
-    <h1 class="text-center">Results and Weak Point Analysis</h1>
+    <h1 class="text-center text-light fw-bold">📊 Results & Weak Point Analysis</h1>
 
     <!-- Results Table -->
-    <table class="table table-striped mt-4">
-        <thead>
-            <tr>
-                <th>Exam Name</th>
-                <th>Score</th>
-                <th>Weak Points</th>
-                <th>Recommended Videos/Materials</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Example rows -->
-            <tr>
-                <td>Midterm Exam - Mathematics</td>
-                <td>75%</td>
-                <td>Algebra, Geometry</td>
-                <td><a href="#">Watch Videos</a></td>
-            </tr>
-            <tr>
-                <td>Final Exam - Science</td>
-                <td>85%</td>
-                <td>Chemical Reactions</td>
-                <td><a href="#">Study Materials</a></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="glassmorphism p-4 mt-4">
+        <table class="table table-dark table-hover rounded">
+            <thead class="thead-light">
+                <tr>
+                    <th>📖 Exam Name</th>
+                    <th>✅ Score</th>
+                    <th>⚠️ Weak Points</th>
+                    <th>📚 Recommended Materials</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Midterm Exam - Mathematics</td>
+                    <td>75%</td>
+                    <td>Algebra, Geometry</td>
+                    <td><a href="#" class="btn btn-gradient btn-sm">📺 Watch Videos</a></td>
+                </tr>
+                <tr>
+                    <td>Final Exam - Science</td>
+                    <td>85%</td>
+                    <td>Chemical Reactions</td>
+                    <td><a href="#" class="btn btn-gradient btn-sm">📖 Study Materials</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="row mt-4">
+        <!-- Performance Chart -->
+        <div class="col-md-6">
+            <div class="glassmorphism p-4">
+                <h3 class="text-light text-center">📈 Performance Overview</h3>
+                <canvas id="performanceChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Weak Point Analysis Chart -->
+        <div class="col-md-6">
+            <div class="glassmorphism p-4">
+                <h3 class="text-light text-center">📊 Weak Point Analysis</h3>
+                <canvas id="weakPointChart"></canvas>
+            </div>
+        </div>
+    </div>
 
     <!-- Follow-Up Assignment -->
-    <div class="mt-4">
-        <h3>Follow-Up Assignment</h3>
-        <p><a href="#">Download Assignment for Practice</a></p>
+    <div class="glassmorphism p-4 mt-4">
+        <h3 class="text-light">📝 Follow-Up Assignment</h3>
+        <p><a href="#" class="btn btn-outline-light">⬇️ Download Assignment for Practice</a></p>
     </div>
 
     <!-- Chatbot Section -->
-    <div class="mt-4">
-        <h3>Need Help?</h3>
-        <p>Use our chatbot for personalized guidance.</p>
-        <a href="/chatbot" class="btn btn-primary">Open Chatbot</a>
+    <div class="glassmorphism p-4 mt-4 text-center">
+        <h3 class="text-light">🤖 Need Help?</h3>
+        <p class="text-light">Use our chatbot for personalized guidance.</p>
+        <a href="/chatbot" class="btn btn-gradient">💬 Open Chatbot</a>
     </div>
-
 </div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Performance Chart (Pie Chart)
+    const ctx1 = document.getElementById('performanceChart').getContext('2d');
+    new Chart(ctx1, {
+        type: 'pie',
+        data: {
+            labels: ['Math Midterm - 75%', 'Science Final - 85%'],
+            datasets: [{
+                data: [75, 85],
+                backgroundColor: ['#ff758c', '#ff7eb3']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { labels: { color: '#fff' } }
+            }
+        }
+    });
+
+    // Weak Point Analysis Chart (Pie Chart)
+    const ctx2 = document.getElementById('weakPointChart').getContext('2d');
+    new Chart(ctx2, {
+        type: 'pie',
+        data: {
+            labels: ['Algebra', 'Geometry', 'Chemical Reactions'],
+            datasets: [{
+                data: [30, 40, 30],
+                backgroundColor: ['#ff758c', '#ff7eb3', '#928dab']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { labels: { color: '#fff' } }
+            }
+        }
+    });
+</script>
+
+<style>
+    /* Background gradient */
+    body {
+        background: linear-gradient(135deg, #1f1c2c, #928dab);
+    }
+
+    /* Glassmorphism effect */
+    .glassmorphism {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glassmorphism:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Table styles */
+    .table-dark {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .table-hover tbody tr:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Custom gradient button */
+    .btn-gradient {
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        border: none;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        color: white;
+        font-weight: bold;
+        border-radius: 20px;
+        transition: 0.3s ease-in-out;
+    }
+
+    .btn-gradient:hover {
+        background: linear-gradient(135deg, #ff7eb3, #ff758c);
+        box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+    }
+
+    h1 {
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Adjust Chart Size */
+    canvas {
+        max-width: 100%;
+        height: 320px !important; /* Increased height for better visibility */
+    }
+</style>
+
 {% endblock %}

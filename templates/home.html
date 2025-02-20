@@ -1,33 +1,55 @@
 {% extends "base.html" %}
 {% block content %}
-<!-- Top Bar -->
-<div class="top-bar bg-dark text-white py-2">
-    <div class="container d-flex justify-content-between align-items-center">
-        <div>
-            <i class="bi bi-envelope"></i> support@learnova.com
-        </div>
-    
-    </div>
-</div>
 
 <!-- Hero Section -->
 <header class="hero-section text-center text-white d-flex align-items-center justify-content-center"
         style="background-image: url('{{ url_for('static', filename='images/hero-bg.jpg') }}'); height: 100vh; background-size: cover; background-position: center;">
     <div class="container">
-        <h1 class="display-3 fw-bold text-uppercase">The Best Place to Learn and Grow</h1>
-        <p class="lead">Empowering students, teachers, and institutions with cutting-edge tools.</p>
+        <h1 class="display-3 fw-bold text-uppercase animate__animated animate__fadeInDown">🚀 Elevate Learning with Learnova</h1>
+        <p class="lead animate__animated animate__fadeIn animate__delay-1s">Empowering students, teachers, and institutions with cutting-edge tools.</p>
         <div class="mt-4">
-            <button class="btn btn-warning btn-lg mx-2">Get Started</button>
-            <button class="btn btn-outline-light btn-lg mx-2">Learn More</button>
+            <a href="/signup" class="btn btn-warning btn-lg mx-2 fw-bold rounded-pill shadow-lg">Get Started</a>
+            <a href="/about" class="btn btn-outline-light btn-lg mx-2 fw-bold rounded-pill shadow-lg">Learn More</a>
         </div>
     </div>
 </header>
 
 <!-- About Section -->
-<section class="py-5 text-center">
+<section class="py-5 text-center bg-dark text-white">
     <div class="container">
-        <h2 class="fw-bold display-4">About Learnova</h2>
-        <p>Learnova is your one-stop solution for online learning, assessments, and performance tracking. Designed for students, teachers, and administrators, Learnova makes education seamless and effective.</p>
+        <h2 class="fw-bold display-4 text-warning mb-4 animate__animated animate__zoomIn">Why Choose Learnova? 🌟</h2>
+        <p class="lead text-light opacity-75">Learnova provides an innovative learning environment with **engaging courses, real-time assessments, and collaboration tools** for a seamless educational experience.</p>
+        
+        <div class="row mt-5">
+            <div class="col-md-4 mb-4">
+                <div class="card bg-secondary text-light border-0 shadow-lg animate__animated animate__fadeInUp">
+                    <img src="{{ url_for('static', filename='images/feature1.jpg') }}" class="card-img-top" alt="Engaging Courses">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">Engaging Courses 📚</h5>
+                        <p class="card-text">Interactive courses designed to boost learning efficiency and retention.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-secondary text-light border-0 shadow-lg animate__animated animate__fadeInUp animate__delay-1s">
+                    <img src="{{ url_for('static', filename='images/feature2.jpg') }}" class="card-img-top" alt="Assessments">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">Real-Time Assessments 📊</h5>
+                        <p class="card-text">Monitor student progress with AI-powered assessments and analytics.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-secondary text-light border-0 shadow-lg animate__animated animate__fadeInUp animate__delay-2s">
+                    <img src="{{ url_for('static', filename='images/feature3.jpg') }}" class="card-img-top" alt="Collaboration Tools">
+                    <div class="card-body">
+                        <h5 class="card-title text-warning">Collaboration Tools 🤝</h5>
+                        <p class="card-text">Enhance interaction between students and teachers with seamless communication.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
+
 {% endblock %}

@@ -1,25 +1,74 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mt-5">
-    <h1 class="text-center">Upload Exam Details</h1>
-    <form method="POST" action="/submit_exam_details" class="mt-4">
-        <div class="mb-3">
-            <label for="exam_name" class="form-label">Exam Name</label>
-            <input type="text" id="exam_name" name="exam_name" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label for="subject" class="form-label">Subject</label>
-            <input type="text" id="subject" name="subject" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label for="date" class="form-label">Date</label>
-            <input type="date" id="date" name="date" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label for="time" class="form-label">Time</label>
-            <input type="time" id="time" name="time" class="form-control" required>
-        </div>
-        <button type="submit" class="btn btn-primary w-100">Submit Exam Details</button>
-    </form>
+    <h1 class="text-center text-light fw-bold">📘 Upload Exam Details</h1>
+
+    <div class="card glassmorphism mt-4 p-4">
+        <form method="POST" action="/submit_exam_details">
+            <div class="mb-3">
+                <label for="exam_name" class="form-label text-light">Exam Name</label>
+                <input type="text" id="exam_name" name="exam_name" class="form-control input-custom" required>
+            </div>
+            <div class="mb-3">
+                <label for="subject" class="form-label text-light">Subject</label>
+                <input type="text" id="subject" name="subject" class="form-control input-custom" required>
+            </div>
+            <div class="mb-3">
+                <label for="date" class="form-label text-light">Date</label>
+                <input type="date" id="date" name="date" class="form-control input-custom" required>
+            </div>
+            <div class="mb-3">
+                <label for="time" class="form-label text-light">Time</label>
+                <input type="time" id="time" name="time" class="form-control input-custom" required>
+            </div>
+            <button type="submit" class="btn btn-gradient w-100">🚀 Submit Exam Details</button>
+        </form>
+    </div>
 </div>
+
+<style>
+    /* Background gradient */
+    body {
+        background: linear-gradient(135deg, #1f1c2c, #928dab);
+    }
+
+    /* Custom input styles */
+    .input-custom {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .input-custom::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Glassmorphism effect for form */
+    .glassmorphism {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+    }
+
+    /* Gradient button */
+    .btn-gradient {
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        color: black;
+        font-weight: bold;
+        border-radius: 25px;
+        transition: 0.3s ease-in-out;
+    }
+
+    .btn-gradient:hover {
+        background: linear-gradient(135deg, #fad0c4, #ff9a9e);
+        box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+    }
+</style>
 {% endblock %}

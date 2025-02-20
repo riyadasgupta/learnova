@@ -2,89 +2,110 @@
 {% block title %}Student Dashboard - LearnNova{% endblock %}
 {% block content %}
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Student Dashboard</h1>
+    <h1 class="text-center mb-4 text-light fw-bold">🎓 Student Dashboard</h1>
+    
     <div class="row">
         <!-- Card: Attend Exam -->
         <div class="col-md-6 mb-3">
-            <div class="card shadow-sm h-100">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Attend Exam</h5>
-                    <p class="card-text">View and attend your scheduled exams.</p>
-                    <a href="/student/attend_exam" class="btn btn-primary">Attend Now</a>
-                </div>
+            <div class="glassmorphism-card text-center">
+                <h5 class="card-title">📝 Attend Exam</h5>
+                <p class="card-text">View and attend your scheduled exams.</p>
+                <a href="/student/attend_exam" class="btn btn-gradient">🚀 Attend Now</a>
             </div>
         </div>
 
         <!-- Card: View Results -->
         <div class="col-md-6 mb-3">
-            <div class="card shadow-sm h-100">
-                <div class="card-body text-center">
-                    <h5 class="card-title">View Results</h5>
-                    <p class="card-text">Check your exam results and performance analysis.</p>
-                    <a href="/student/view_results" class="btn btn-success">View Results</a>
-                </div>
+            <div class="glassmorphism-card text-center">
+                <h5 class="card-title">📊 View Results</h5>
+                <p class="card-text">Check your exam results and performance analysis.</p>
+                <a href="/student/view_results" class="btn btn-gradient">📈 View Results</a>
             </div>
         </div>
 
         <!-- Card: Study Materials -->
         <div class="col-md-6 mb-3">
-            <div class="card shadow-sm h-100">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Study Materials</h5>
-                    <p class="card-text">Access recommended videos and study materials.</p>
-                    <a href="/student/study_materials" class="btn btn-info">Access Materials</a>
-                </div>
+            <div class="glassmorphism-card text-center">
+                <h5 class="card-title">📚 Study Materials</h5>
+                <p class="card-text">Access recommended videos and study materials.</p>
+                <a href="/student/study_materials" class="btn btn-gradient">📖 Access Materials</a>
             </div>
         </div>
 
         <!-- Card: Chatbot -->
         <div class="col-md-6 mb-3">
-            <div class="card shadow-sm h-100">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Chatbot (Personalized Mentor)</h5>
-                    <p class="card-text">Get personalized guidance from our chatbot.</p>
-                    <a href="/student/chatbot" class="btn btn-warning">Open Chatbot</a>
-                </div>
+            <div class="glassmorphism-card text-center">
+                <h5 class="card-title">🤖 Chatbot (Personalized Mentor)</h5>
+                <p class="card-text">Get personalized guidance from our chatbot.</p>
+                <a href="/student/chatbot" class="btn btn-gradient">💬 Open Chatbot</a>
             </div>
         </div>
     </div>
 
     <!-- Quick Links Section -->
-    <h2 class="mt-5 mb-3">Quick Links</h2>
+    <h2 class="mt-5 mb-3 text-light">🔗 Quick Links</h2>
     <ul class="list-group">
-        <li class="list-group-item"><a href="/student/attend_exam"><i class="fas fa-edit me-2"></i>Attend Exam</a></li>
-        <li class="list-group-item"><a href="/student/view_results"><i class="fas fa-chart-bar me-2"></i>View Results and Weak Point Analysis</a></li>
-        <li class="list-group-item"><a href="/student/study_materials"><i class="fas fa-book me-2"></i>Access Study Materials</a></li>
-        <li class="list-group-item"><a href="/student/chatbot"><i class="fas fa-comments me-2"></i>Chatbot (Personalized Mentor)</a></li>
+        <li class="list-group-item list-hover"><a href="/student/attend_exam"><i class="fas fa-edit me-2"></i>Attend Exam</a></li>
+        <li class="list-group-item list-hover"><a href="/student/view_results"><i class="fas fa-chart-bar me-2"></i>View Results & Weak Point Analysis</a></li>
+        <li class="list-group-item list-hover"><a href="/student/study_materials"><i class="fas fa-book me-2"></i>Access Study Materials</a></li>
+        <li class="list-group-item list-hover"><a href="/student/chatbot"><i class="fas fa-comments me-2"></i>Chatbot (Personalized Mentor)</a></li>
     </ul>
 </div>
 
 <style>
-    .card {
-        border-radius: 8px;
+    /* Background */
+    body {
+        background: linear-gradient(135deg, #1f1c2c, #928dab);
+    }
+
+    /* Glassmorphism Cards */
+    .glassmorphism-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .card:hover {
+    .glassmorphism-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
     }
 
-    .btn {
+    /* Gradient Buttons */
+    .btn-gradient {
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        border: none;
+        padding: 10px 16px;
+        font-size: 1rem;
+        color: white;
+        font-weight: bold;
         border-radius: 20px;
+        transition: 0.3s ease-in-out;
     }
 
-    h1 {
-        font-size: 2.5rem;
-        color: #2c3e50;
+    .btn-gradient:hover {
+        background: linear-gradient(135deg, #ff7eb3, #ff758c);
+        box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
     }
 
+    /* List Hover Effects */
     .list-group-item {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: none;
         transition: background-color 0.3s ease;
     }
 
-    .list-group-item:hover {
-        background-color: #f8f9fa;
+    .list-hover:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    h1, h2 {
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     }
 </style>
+
 {% endblock %}

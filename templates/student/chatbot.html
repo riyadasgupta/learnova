@@ -3,54 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learnova Exam Preparation Chatbot</title>
+    <title>Learnova Exam Bot 🚀</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@300;400;600&display=swap');
+
         body {
-            background-color: #f0f2f5;
+            background: radial-gradient(circle at top left, #1a1a2e, #16213e);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
         }
+
+        .container {
+            max-width: 600px;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0px 0px 10px #00c3ff;
+        }
+
         .chat-container {
             height: 500px;
             overflow-y: auto;
-            border: 1px solid #ced4da;
-            padding: 15px;
-            border-radius: 5px;
-            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 195, 255, 0.2);
+            display: flex;
+            flex-direction: column;
         }
+
         .message {
             margin-bottom: 15px;
-            padding: 10px;
+            padding: 12px;
             border-radius: 15px;
-            max-width: 80%;
+            max-width: 75%;
+            word-wrap: break-word;
+            opacity: 0;
+            animation: fadeIn 0.3s ease-in forwards;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .user-message {
-            background-color: #007bff;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
             color: white;
-            margin-left: auto;
+            align-self: flex-end;
+            text-align: right;
+            box-shadow: 0px 0px 10px rgba(255, 118, 182, 0.5);
         }
+
         .bot-message {
-            background-color: #f1f0f0;
-            margin-right: auto;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            align-self: flex-start;
+            box-shadow: 0px 0px 10px rgba(0, 195, 255, 0.3);
         }
+
         .chat-input {
-            border-radius: 20px;
+            border-radius: 30px;
+            padding: 12px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
         }
+
+        .chat-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
         .send-button {
-            border-radius: 20px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            border: none;
+            color: white;
+            padding: 12px 18px;
+            font-weight: bold;
+            transition: 0.3s ease;
+            box-shadow: 0 0 15px rgba(255, 118, 182, 0.5);
+        }
+
+        .send-button:hover {
+            background: linear-gradient(135deg, #ff7eb3, #ff758c);
+            box-shadow: 0 4px 15px rgba(255, 118, 182, 0.7);
         }
     </style>
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Learnova Exam Preparation Assistant</h1>
-        <div class="chat-container" id="chatContainer">
-            <div class="message bot-message">
-                Hello! I'm your LearnNova exam preparation assistant. How can I help you prepare for your exams today?
-            </div>
+        <h1>🤖 Learnova Exam Bot</h1>
+        <div class="chat-container d-flex flex-column" id="chatContainer">
+            <div class="message bot-message">Hello! I'm your Learnova assistant. What subject do you need help with? 📚</div>
         </div>
         <div class="input-group mt-3">
-            <input type="text" id="userInput" class="form-control chat-input" placeholder="Type your message...">
-            <button class="btn btn-primary send-button" onclick="sendMessage()">Send</button>
+            <input type="text" id="userInput" class="form-control chat-input" placeholder="Ask me anything...">
+            <button class="btn send-button" onclick="sendMessage()">Send <i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
 
@@ -59,17 +117,16 @@
         let subjectFocus = '';
 
         function sendMessage() {
-            var userInput = document.getElementById("userInput");
-            var chatContainer = document.getElementById("chatContainer");
-            
+            let userInput = document.getElementById("userInput");
+            let chatContainer = document.getElementById("chatContainer");
+
             if (userInput.value.trim() !== "") {
                 appendMessage(userInput.value, 'user-message');
 
                 let botResponse = getBotResponse(userInput.value);
 
                 setTimeout(() => {
-                    appendMessage(botResponse, 'bot-message');
-                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                    botTypingEffect(botResponse);
                 }, 500);
 
                 userInput.value = "";
@@ -77,102 +134,67 @@
         }
 
         function appendMessage(message, className) {
-            var chatContainer = document.getElementById("chatContainer");
-            var messageDiv = document.createElement("div");
+            let chatContainer = document.getElementById("chatContainer");
+            let messageDiv = document.createElement("div");
             messageDiv.className = "message " + className;
             messageDiv.textContent = message;
             chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function botTypingEffect(message) {
+            let chatContainer = document.getElementById("chatContainer");
+            let messageDiv = document.createElement("div");
+            messageDiv.className = "message bot-message";
+            chatContainer.appendChild(messageDiv);
+
+            let i = 0;
+            let typingInterval = setInterval(() => {
+                if (i < message.length) {
+                    messageDiv.textContent += message.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typingInterval);
+                }
+            }, 30);
+
+            chatContainer.scrollTop = chatContainer.scrollHeight;
         }
 
         function getBotResponse(userMessage) {
             userMessage = userMessage.toLowerCase();
 
+            if (userMessage.includes("hello")) {
+                return "Hey there! 👋 Hope you're doing great! Your last exam went well, and you scored **85% in Mathematics!** 📊 Want some tips to improve further?";
+            }
+
             switch(conversationState) {
                 case 'initial':
-                    if (userMessage.includes("exam preparation")) {
+                    if (userMessage.includes("exam")) {
                         conversationState = 'subject_selection';
-                        return "Great! I'd be happy to help you prepare for your exams. What subject would you like to focus on? (e.g., Math, Science, History)";
+                        return "Awesome! What subject do you need help with? (Math, Science, History) 📖";
                     }
                     break;
 
                 case 'subject_selection':
                     subjectFocus = userMessage;
                     conversationState = 'preparation_method';
-                    return `Excellent choice! For ${subjectFocus}, would you like help with: 
-                            1. Study techniques
-                            2. Practice questions
-                            3. Time management
-                            4. Stress management
-                            Please choose a number or type your preference.`;
+                    return `Great choice! For ${subjectFocus}, do you need:
+                            1️⃣ Study techniques
+                            2️⃣ Practice questions
+                            3️⃣ Time management
+                            4️⃣ Stress management`;
 
                 case 'preparation_method':
-                    switch(userMessage) {
-                        case '1':
-                        case 'study techniques':
-                            conversationState = 'study_techniques';
-                            return `For ${subjectFocus}, here are some effective study techniques:
-                                    1. Active recall: Test yourself regularly
-                                    2. Spaced repetition: Review material at increasing intervals
-                                    3. Mind mapping: Create visual representations of concepts
-                                    Which technique would you like more information on?`;
-
-                        case '2':
-                        case 'practice questions':
-                            conversationState = 'practice_questions';
-                            return `Practice questions are a great way to prepare. Would you like:
-                                    1. Sample questions
-                                    2. Links to online practice tests
-                                    3. Tips for creating your own practice questions`;
-
-                        case '3':
-                        case 'time management':
-                            conversationState = 'time_management';
-                            return `Effective time management is crucial. Here are some strategies:
-                                    1. Create a study schedule
-                                    2. Use the Pomodoro Technique
-                                    3. Prioritize your subjects
-                                    Which strategy would you like more details on?`;
-
-                        case '4':
-                        case 'stress management':
-                            conversationState = 'stress_management';
-                            return `Managing stress is important for exam success. Try these techniques:
-                                    1. Deep breathing exercises
-                                    2. Progressive muscle relaxation
-                                    3. Mindfulness meditation
-                                    Which technique would you like to learn more about?`;
-
-                        default:
-                            return "I'm sorry, I didn't understand that. Please choose one of the options provided or ask for help if you need clarification.";
-                    }
-
-                case 'study_techniques':
-                case 'practice_questions':
-                case 'time_management':
-                case 'stress_management':
-                    conversationState = 'follow_up';
-                    return `Thank you for your interest in ${userMessage}. I've noted that down. Is there anything else you'd like help with regarding ${subjectFocus} exam preparation?`;
-
-                case 'follow_up':
-                    if (userMessage.includes('yes') || userMessage.includes('yeah')) {
-                        conversationState = 'preparation_method';
-                        return `Great! Let's continue. For ${subjectFocus}, would you like help with: 
-                                1. Study techniques
-                                2. Practice questions
-                                3. Time management
-                                4. Stress management
-                                Please choose a number or type your preference.`;
-                    } else if (userMessage.includes('no') || userMessage.includes('nope')) {
-                        conversationState = 'initial';
-                        return "Alright! If you need any more help with exam preparation, just let me know. Good luck with your studies!";
-                    }
+                    if (userMessage.includes("1")) return `For ${subjectFocus}, try active recall, spaced repetition, or mind maps! Need details?`;
+                    if (userMessage.includes("2")) return `Would you like sample questions or online practice tests?`;
+                    if (userMessage.includes("3")) return `Try the Pomodoro technique or a study schedule! Need help setting one up?`;
+                    if (userMessage.includes("4")) return `Deep breathing & meditation can help! Want some guided exercises?`;
                     break;
 
                 default:
-                    return "I'm here to help with exam preparation. Can you tell me more specifically what you need help with?";
+                    return "I'm here to help! What do you need help with?";
             }
-
-            return "I'm here to help with exam preparation. Can you tell me more specifically what you need help with?";
         }
     </script>
 

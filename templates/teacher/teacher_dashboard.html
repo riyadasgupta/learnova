@@ -1,69 +1,110 @@
 {% extends "base.html" %}
-{% block title %}Teacher Dashboard - LearnNova{% endblock %}
+{% block title %}Teacher Dashboard - Learnova{% endblock %}
 {% block content %}
+
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Teacher Dashboard</h1>
+    <h1 class="text-center mb-4 text-light fw-bold">🎓 Teacher Dashboard</h1>
+
     <div class="row">
         <!-- Card: Upload Exam Details -->
-        <div class="col-md-6 mb-3">
-            <div class="card shadow-sm h-100">
+        <div class="col-md-6 mb-4">
+            <div class="card glassmorphism h-100">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Upload Exam Details</h5>
+                    <h5 class="card-title">📄 Upload Exam Details</h5>
                     <p class="card-text">Create and upload details for new exams.</p>
-                    <a href="/teacher/upload_exam_details" class="btn btn-primary">Upload Now</a>
+                    <a href="/teacher/upload_exam_details" class="btn btn-gradient">Upload Now</a>
                 </div>
             </div>
         </div>
 
         <!-- Card: Assign Students -->
-        <div class="col-md-6 mb-3">
-            <div class="card shadow-sm h-100">
+        <div class="col-md-6 mb-4">
+            <div class="card glassmorphism h-100">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Assign Students for Exams</h5>
+                    <h5 class="card-title">👥 Assign Students</h5>
                     <p class="card-text">Assign students to specific exams.</p>
-                    <a href="/teacher/assign_students" class="btn btn-success">Assign Now</a>
+                    <a href="/teacher/assign_students" class="btn btn-gradient">Assign Now</a>
                 </div>
             </div>
         </div>
-
-        <!-- Add more cards as needed -->
     </div>
 
-    <h2 class="mt-5 mb-3">Quick Links</h2>
+    <h2 class="mt-5 mb-3 text-light fw-bold">🚀 Quick Links</h2>
     <ul class="list-group">
-        <li class="list-group-item"><a href="/teacher/view_upcoming_exams"><i class="fas fa-calendar-alt me-2"></i>View Upcoming Exams</a></li>
-        <li class="list-group-item"><a href="/teacher/student_data"><i class="fas fa-users me-2"></i>Student Data</a></li>
-        <li class="list-group-item"><a href="/teacher/performance_details"><i class="fas fa-chart-line me-2"></i>Performance Details & Report Analysis</a></li>
-        <li class="list-group-item"><a href="/teacher/improvement_details"><i class="fas fa-lightbulb me-2"></i>Improvement Details</a></li>
+        <li class="list-group-item list-custom"><a href="/teacher/view_upcoming_exams">📅 View Upcoming Exams</a></li>
+        <li class="list-group-item list-custom"><a href="/teacher/student_data">📊 Student Data</a></li>
+        <li class="list-group-item list-custom"><a href="/teacher/performance_details">📈 Performance Reports</a></li>
+        <li class="list-group-item list-custom"><a href="/teacher/improvement_details">💡 Improvement Details</a></li>
     </ul>
 </div>
 
 <style>
-    .card {
-        border-radius: 8px;
+    /* Background gradient */
+    body {
+        background: linear-gradient(135deg, #1f1c2c, #928dab);
+    }
+
+    /* Glassmorphism effect for cards */
+    .glassmorphism {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 20px;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .card:hover {
+    .glassmorphism:hover {
         transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
     }
 
-    .btn {
-        border-radius: 20px;
+    /* Custom gradient button */
+    .btn-gradient {
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        border: none;
+        padding: 12px 24px;
+        font-size: 1rem;
+        color: black;
+        font-weight: bold;
+        border-radius: 25px;
+        transition: 0.3s ease-in-out;
     }
 
-    h1 {
-        font-size: 2.5rem;
-        color: #2c3e50;
+    .btn-gradient:hover {
+        background: linear-gradient(135deg, #fad0c4, #ff9a9e);
+        box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
     }
 
-    .list-group-item {
-        transition: background-color 0.3s ease;
+    /* Custom list styling */
+    .list-custom {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        border: none;
+        color: white;
+        font-weight: bold;
+        transition: background 0.3s ease;
     }
 
-    .list-group-item:hover {
-        background-color: #f8f9fa;
+    .list-custom:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    h1, h2 {
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .list-group-item a {
+        text-decoration: none;
+        color: white;
+        font-size: 1.1rem;
+        display: block;
+    }
+
+    .list-group-item a:hover {
+        text-decoration: underline;
     }
 </style>
+
 {% endblock %}

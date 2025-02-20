@@ -1,63 +1,91 @@
 {% extends "base.html" %}
-{% block title %}Admin Dashboard - LearnNova{% endblock %}
+{% block title %}Admin Dashboard - Learnova{% endblock %}
 {% block content %}
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Admin Dashboard</h1>
-    <div class="row">
+    <h1 class="text-center mb-4 text-light">Admin Dashboard</h1>
+    <div class="row g-4">
+
         <!-- Card: Active Users -->
-        <div class="col-md-4 mb-3">
-            <div class="card shadow-sm h-100">
+        <div class="col-md-4">
+            <div class="card dashboard-card">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Number of Active Users</h5>
-                    <p class="card-text">View and manage all active users in the system.</p>
-                    <a href="/active_users" class="btn btn-primary">View Details</a>
+                    <h5 class="card-title">Active Users</h5>
+                    <p class="card-text">Monitor all currently active users in the system.</p>
+                    <a href="/active_users" class="btn btn-outline-info">View Details</a>
                 </div>
             </div>
         </div>
 
         <!-- Card: Upcoming Exams -->
-        <div class="col-md-4 mb-3">
-            <div class="card shadow-sm h-100">
+        <div class="col-md-4">
+            <div class="card dashboard-card">
                 <div class="card-body text-center">
                     <h5 class="card-title">Upcoming Exams</h5>
-                    <p class="card-text">View and schedule upcoming exams for students.</p>
-                    <a href="/upcoming_exams" class="btn btn-success">View Details</a>
+                    <p class="card-text">Schedule and track upcoming student exams.</p>
+                    <a href="/upcoming_exams" class="btn btn-outline-info">View Details</a>
                 </div>
             </div>
         </div>
 
         <!-- Card: Manage Users -->
-        <div class="col-md-4 mb-3">
-            <div class="card shadow-sm h-100">
+        <div class="col-md-4">
+            <div class="card dashboard-card">
                 <div class="card-body text-center">
                     <h5 class="card-title">Manage Users</h5>
                     <p class="card-text">Add, edit, or remove users from the system.</p>
-                    <a href="/manage_users" class="btn btn-info">Manage Now</a>
+                    <a href="/manage_users" class="btn btn-outline-info">Manage Now</a>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 
 <style>
-    .card {
-        border-radius: 8px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    body {
+        background-color: #121212;
+        color: #ffffff;
     }
 
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    .dashboard-card {
+        background: rgba(255, 255, 255, 0.07); /* Darker transparency for readability */
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 20px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #ffffff;
     }
 
-    .btn {
-        border-radius: 20px;
+    .dashboard-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 188, 212, 0.3);
     }
 
-    h1 {
-        font-size: 2.5rem;
-        color: #2c3e50;
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #ffffff;
     }
-    
+
+    .card-text {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.85); /* Slightly faded white for a smooth look */
+    }
+
+    .btn-outline-info {
+        border-radius: 25px;
+        padding: 10px 20px;
+        transition: 0.3s;
+        font-weight: bold;
+        border-color: #00bcd4;
+        color: #00bcd4;
+    }
+
+    .btn-outline-info:hover {
+        background: #00bcd4;
+        color: #121212;
+    }
 </style>
+
 {% endblock %}

@@ -1,33 +1,179 @@
-/* Top Bar */
-.top-bar {
-    font-size: 0.9rem;
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Hero Section */
+/* Body and Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Navbar Customization */
+.navbar {
+    background-color: #343a40 !important;
+    padding: 15px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    max-height: 40px;
+    margin-right: 10px;
+}
+
+.navbar-nav .nav-item .nav-link {
+    font-size: 1.1rem;
+    color: #f8f9fa;
+    margin-left: 20px;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #00bcd4;  /* Accent color on hover */
+}
+
+/* Navbar Toggler */
+.navbar-toggler-icon {
+    background-color: #ffffff;
+}
+
+/* Content Section */
+.container-fluid {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+/* Footer Customization */
+footer {
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    padding: 30px 20px;
+    color: #f8f9fa;
+    font-size: 1rem;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+}
+
+footer .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+footer .social-icons {
+    margin-top: 10px;
+}
+
+footer .social-icons a {
+    color: #f8f9fa;
+    font-size: 1.2rem;
+    margin: 0 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+footer .social-icons a:hover {
+    color: #00bcd4;
+}
+
+/* Add some padding to the main content block */
+main {
+    padding: 50px;
+}
+
+/* Utility classes */
+.text-center {
+    text-align: center;
+}
+
+/* Hero Section or Page Title */
+.hero-section {
+    background-color: #007bff;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
 .hero-section h1 {
     font-size: 3rem;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    font-weight: 600;
 }
 
 .hero-section p {
-    font-size: 1.25rem;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    font-size: 1.2rem;
+    margin-top: 10px;
 }
 
-/* About Section */
-.about-section h2 {
-    font-family: 'Georgia', serif;
+/* Custom Button Style */
+.btn-custom {
+    background-color: #00bcd4;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
 }
 
-.logo-container {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 1000;
-  }
-  
-  .logo {
-    max-width: 150px;
-    height: auto;
-  }
-  
+.btn-custom:hover {
+    background-color: #0097a7;
+}
+
+/* Card Styling for content sections */
+.card {
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #555;
+}
+
+.card-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+}
+
+/* Responsive Design: Mobile-Friendly */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+
+    .navbar-nav .nav-item .nav-link {
+        font-size: 1rem;
+    }
+
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    footer {
+        padding: 20px 15px;
+        font-size: 0.9rem;
+    }
+}

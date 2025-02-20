@@ -2,107 +2,163 @@
 {% block title %}Active Users - Admin Dashboard{% endblock %}
 {% block content %}
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Active Users</h1>
+    <h1 class="text-center mb-4 text-light fw-bold">✨ Active Users ✨</h1>
 
     <!-- Users Table -->
-    <table class="table table-striped table-hover">
-        <thead class="table-dark">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Example rows -->
-            <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>john.doe@example.com</td>
-                <td>Student</td>
-                <td><span class="badge bg-success">Active</span></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Jane Smith</td>
-                <td>jane.smith@example.com</td>
-                <td>Teacher</td>
-                <td><span class="badge bg-success">Active</span></td>
-            </tr>
-            <!-- Add more rows dynamically -->
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table custom-table align-middle shadow-lg">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>John Doe</td>
+                    <td>john.doe@example.com</td>
+                    <td>Student</td>
+                    <td><span class="badge bg-success text-dark">Active</span></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Jane Smith</td>
+                    <td>jane.smith@example.com</td>
+                    <td>Teacher</td>
+                    <td><span class="badge bg-success text-dark">Active</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <!-- Add New User Button -->
-    <div class="text-end mt-3">
-        <!-- Button to trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
-            Add New User
+    <div class="text-end mt-4">
+        <button type="button" class="btn custom-btn" data-bs-toggle="modal" data-bs-target="#addUserModal">
+            + Add New User
         </button>
     </div>
 
     <!-- Add User Modal -->
     <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addUserModalLabel">Add New User</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content modal-glass">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title text-light">Add New User</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- Add User Form -->
                     <form id="addUserForm" method="POST" action="/add_user">
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" required />
+                            <label for="name" class="form-label text-light">Name</label>
+                            <input type="text" class="form-control custom-input" id="name" name="name" required />
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required />
+                            <label for="email" class="form-label text-light">Email</label>
+                            <input type="email" class="form-control custom-input" id="email" name="email" required />
                         </div>
                         <div class="mb-3">
-                            <label for="role" class="form-label">Role</label>
-                            <select id="role" name="role" class="form-select" required>
+                            <label for="role" class="form-label text-light">Role</label>
+                            <select id="role" name="role" class="form-select custom-input" required>
                                 <option value="" disabled selected>Select Role</option>
                                 <option value="Student">Student</option>
                                 <option value="Teacher">Teacher</option>
                                 <option value="Admin">Admin</option>
                             </select>
                         </div>
-                        <!-- Submit Button -->
-                        <button type="submit" class="btn btn-success w-100">Add User</button>
+                        <button type="submit" class="btn custom-btn w-100">🚀 Add User</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 
 <style>
-    h1 {
-        font-size: 2.5rem;
-        color: #2c3e50;
+    body {
+        background-color: #0d1117; /* Deep dark for contrast */
+        color: #ffffff; /* White text for better readability */
     }
 
-    .table-hover tbody tr:hover {
-        background-color: #f8f9fa;
+    /* Table Styling */
+    .custom-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        border-radius: 12px;
+        color: #ffffff;
     }
 
-    .badge {
-        font-size: 0.9rem;
-        padding: 0.5em 0.75em;
+    .custom-table th {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #facc15; /* Warm yellow */
+        padding: 14px;
+        font-weight: bold;
+        text-transform: uppercase;
     }
 
-    .btn-primary {
-        border-radius: 20px;
-    }
-
-    .modal-content {
+    .custom-table td {
+        padding: 14px;
+        background-color: rgba(255, 255, 255, 0.15);
         border-radius: 10px;
+        color: #ffffff;
+    }
+
+    .custom-table tbody tr:hover {
+        background-color: rgba(250, 204, 21, 0.2); /* Yellow glow effect */
+        transition: 0.3s;
+    }
+
+    /* Buttons */
+    .custom-btn {
+        background-color: #facc15;
+        color: #121212;
+        font-weight: bold;
+        border-radius: 25px;
+        padding: 12px 20px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(250, 204, 21, 0.3);
+    }
+
+    .custom-btn:hover {
+        background-color: #eab308;
+        color: #ffffff;
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(250, 204, 21, 0.4);
+    }
+
+    /* Modal */
+    .modal-glass {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+    }
+
+    .modal-header {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Input Fields */
+    .custom-input {
+        background-color: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: #ffffff;
+        border-radius: 25px;
+        padding: 12px 15px;
+        font-size: 1rem;
+    }
+
+    .custom-input:focus {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-color: #facc15;
+        box-shadow: 0 0 12px rgba(250, 204, 21, 0.5);
     }
 </style>
-
 {% endblock %}
