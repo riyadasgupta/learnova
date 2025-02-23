@@ -40,9 +40,6 @@ Learnova is an innovative online learning platform designed to bridge the gap be
 
 - **Backend**: Flask (Python) for robust and scalable server-side operations.
 - **Frontend**: HTML5, CSS3, JavaScript with Bootstrap for responsive design.
-- **Database**: SQLite for development, PostgreSQL for production environments.
-- **Authentication**: JWT (JSON Web Tokens) for secure user authentication.
-- **Cloud Hosting**: AWS for scalable and reliable deployment.
 - **Version Control**: Git and GitHub for collaborative development.
 
 ## Future Enhancements
