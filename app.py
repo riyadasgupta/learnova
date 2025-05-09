@@ -1,6 +1,23 @@
 from flask import Flask, redirect, render_template, request, url_for
+from flask import flash, session
+from flask_sqlalchemy import SQLAlchemy
+from app.models import db, User
+import os
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///learnova.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db.init_app(app)
+with app.app_context():
+    db.create_all()
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'learnova.db')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # (optional, but recommended)
+
+app.secret_key = 'your_secret_key'
+
 
 # Home Page Route
 @app.route('/')
@@ -10,6 +27,9 @@ def home():
 # Admin dashboard
 @app.route('/admin_dashboard')
 def admin_dashboard():
+    if session.get('role') != 'admin':
+        flash('Unauthorized access!', 'danger')
+        return redirect(url_for('login'))
     return render_template('admin/admin_dashboard.html') 
 
 @app.route('/active_users')
@@ -48,7 +68,11 @@ def manage_users():
 # Teacher Dashboard Route
 @app.route('/teacher_dashboard')
 def teacher_dashboard():
-    return render_template('teacher/teacher_dashboard.html', title="Teacher Dashboard")
+    if session.get('role') != 'teacher':
+        flash('Unauthorized access!', 'danger')
+        return redirect(url_for('login'))
+    return render_template('teacher/teacher_dashboard.html')
+
 
 @app.route('/teacher/upload_exam_details')
 def upload_exam_details():
@@ -76,10 +100,15 @@ def assign_students_to_exam():
     # Add logic to assign students to the selected exam
     return f'Students assigned to exam ID {exam_id} successfully!'
 
-# Student dashboard
 @app.route('/student_dashboard')
 def student_dashboard():
+    if session.get('role') != 'student':
+        flash('Unauthorized access!', 'danger')
+        return redirect(url_for('login'))
     return render_template('student/student_dashboard.html')
+
+# Repeat similar checks for teacher_dashboard and admin_dashboard
+
 
 @app.route('/student/attend_exam', methods=['GET', 'POST'])
 def attend_exam():
@@ -113,6 +142,64 @@ def about():
 @app.route('/contact')
 def contact():
     return render_template('contact.html', title="Contact Us")
+
+
+users = {}
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        role = request.form['role']  # <-- Make sure this is here!
+        password = request.form['password']
+        confirm_password = request.form['confirm_password']
+
+        # ... validation code ...
+
+        user = User(username=username, email=email, role=role)
+        user.set_password(password)
+        db.session.add(user)
+        db.session.commit()
+        flash('Registration successful! Please login.', 'success')
+        return redirect(url_for('login'))
+    return render_template('register.html')
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = User.query.filter((User.username==username)|(User.email==username)).first()
+        if user and user.check_password(password):
+            session['username'] = user.username
+            session['role'] = user.role
+            flash('Login successful!', 'success')
+            # Redirect based on user role
+            if user.role == 'student':
+                return redirect(url_for('student_dashboard'))
+            elif user.role == 'teacher':
+                return redirect(url_for('teacher_dashboard'))
+            elif user.role == 'admin':
+                return redirect(url_for('admin_dashboard'))
+            else:
+                flash('Unknown user role!', 'danger')
+                return redirect(url_for('login'))
+        else:
+            flash('Invalid username/email or password!', 'danger')
+            return render_template('login.html')
+    return render_template('login.html')
+
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)  # Remove the username from session
+    flash('You have been logged out.', 'info')
+    return redirect(url_for('home'))  # Redirect to home or login page
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
